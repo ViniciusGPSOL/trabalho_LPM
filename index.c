@@ -2,7 +2,6 @@
 #include <string.h>
 
 //structs
-
 struct financeiro {
     float salario, alimentacao, moradia, saldo, outros;
 };
@@ -15,9 +14,7 @@ struct pessoa {
 };
 
 //Funcoes
-
 //OPCAO 2 RELACIONADO A REGISTROS
-
 void ver_registros(const char *nome_pesquisado) {
     FILE *arquivo = fopen("bd.txt", "r");
 
@@ -47,14 +44,18 @@ void ver_registros(const char *nome_pesquisado) {
             printf("%s", linha); // Imprime a linha com o nome pesquisado
             encontrou = 1; // Define a flag para indicar que encontrou o nome pesquisado
         }
-
         numero_linha++;
     }
 
     // Fecha o arquivo quando terminar
     fclose(arquivo);
-}
+    int confirma;
+    printf("Confirma visualizacao? 1 para sim\n");
+    scanf("%d", &confirma);
 
+    // Limpa a tela
+    system("cls");
+}
 
 //RELACIONADO A OPCAO 1. CADASTRO
 int numero_linha(FILE *arquivo) {
@@ -85,7 +86,7 @@ void cadastrar() {
     scanf("%s", p.cidade);
     printf("\nEscreva o seu salario bruto:\n");
     scanf("%f", &p.f.salario);
-    printf("\nEscreva os seus gastos em alimentação:");
+    printf("\nEscreva os seus gastos em alimentacao:");
     scanf("%f", &p.f.alimentacao);
     printf("\nEscreva os seus gastos em moradia:");
     scanf("%f", &p.f.moradia);
@@ -113,22 +114,19 @@ void cadastrar() {
 
     // Fecha o arquivo quando terminar
     fclose(arquivo);
+    //limpa a telinha :0
+    system("cls");
 }
 
-
 //main
-
 int main() {
 
     int op;
-    int keep = 1;
-
-
-    while (keep == 1){
+    int manter = 1;
+    while (manter == 1){
 
         printf("-----CONTROLE FINANCEIRO-----\n");
         printf("Menu\n 1. Cadastro\n 2. Ver registros\n 3. Sair\n");
-
         scanf("%d", &op);
         switch (op) {
             case 1:
@@ -141,7 +139,7 @@ int main() {
                 ver_registros(nome_pesquisado);
                 break;
             case 3:
-                keep = 0;
+                manter = 0;
                 break;
             default:
                 printf("Opção inválida.\n");
